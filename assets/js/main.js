@@ -20,10 +20,25 @@ function criaTarefa(textoInput) {
     const li = criaLi();
     li.innerText = textoInput;
     tarefas.appendChild(li);
+    criarBotaoApagar(li);
+    limpaInput();
+}
+
+function limpaInput() {
     inputTarefa.value = '';
+    inputTarefa.focus();
 }
 
 function criaLi() {
     const li = document.createElement('li');
     return li;
+}
+
+function criarBotaoApagar(li) {
+    li.innerText += ' ';
+    const botaoApagar = document.createElement('button');
+    botaoApagar.innerText = 'Apagar';
+    botaoApagar.setAttribute('class', 'apagar');
+    botaoApagar.setAttribute('title', 'Apagar esta tarefa');
+    li.appendChild(botaoApagar);
 }
