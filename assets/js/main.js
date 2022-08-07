@@ -22,6 +22,7 @@ function criaTarefa(textoInput) {
     tarefas.appendChild(li);
     criarBotaoApagar(li);
     limpaInput();
+    salvarTarefa();
 }
 
 function limpaInput() {
@@ -41,4 +42,24 @@ function criarBotaoApagar(li) {
     botaoApagar.setAttribute('class', 'apagar');
     botaoApagar.setAttribute('title', 'Apagar esta tarefa');
     li.appendChild(botaoApagar);
+}
+
+document.addEventListener('click', function(e) {
+    const elemento = e.target;
+
+    if (elemento.classList.contains('apagar')) {
+        elemento.parentElement.remove();
+    }
+
+});
+
+function salvarTarefa() {
+    const listaLi = tarefas.querySelectorAll('li');
+    const listaTarefas = [];
+    for (let tarefa of listaLi) {
+        let tarefaTexto = tarefa.innerText;
+        tarefaTexto = tarefaTexto.replace('Apagar', '').trim();
+        listaTarefas.push(tarefaTexto);
+    }
+
 }
